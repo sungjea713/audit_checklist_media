@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Platform-wise Audit Checklist</title>
+  <script src="https://cdn.sheetjs.com/xlsx-0.19.2/package/dist/xlsx.full.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+    h1 { color: #2c3e50; }
+    h2 { color: #34495e; margin-top: 2em; }
+    /* 1. Make the table wrapper a positioning context */
+.table-wrapper {
+  position: relative;
+  display: inline-block;   /* shrink to table width */
+}
+
+/* 2. Style the reset button */
+/* Make the status-header a positioning context */
+th.status-header {
+  position: relative;
+}
+
+#reset-all {
+  position: absolute;
+  top: -6.6em;      /* negative to float above the header text */
+  right: 0.2em;     /* a little inset from the right edge */
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 4px 32px;
+  font-size: 1.0em;
+  border-radius: 3px;
+  cursor: pointer;
+}
+#reset-all:hover {
+  background: #c0392b;
+}
+
+
+    .note { font-style: italic; margin-bottom: 1em; font-size: 16px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 2em; }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      vertical-align: top;
+    }
+    th { background-color: #f4f4f4; }
+    #generate-report {
+      padding: 10px 20px; font-size: 16px;
+      background: #27ae60; color: #fff; border: none; border-radius: 4px;
+      cursor: pointer;
+    }
+    #generate-report:hover { background: #1e8449; }
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr { display: block; }
+      th { position: absolute; top: -9999px; left: -9999px; }
+      td { border: none; position: relative; padding-left: 50%; }
+      td:before {
+        position: absolute; top: 8px; left: 12px;
+        width: 45%; white-space: nowrap; font-weight: bold;
+      }
+      td:nth-of-type(1):before { content: "Section"; }
+      td:nth-of-type(2):before { content: "Category / Step"; }
+      td:nth-of-type(3):before { content: "Checklist Item"; }
+      td:nth-of-type(4):before { content: "Description"; }
+      td:nth-of-type(5):before { content: "Applies To"; }
+      td:nth-of-type(6):before { content: "Status"; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>✅ Platform-wise Audit Checklist for Newly Onboarded E-commerce Clients</h1>
+  <p class="note">Use this master QA checklist when onboarding new e-commerce clients. Items marked with 🕒 apply only to websites with existing setups for corresponding platforms.</p>
+
+  <!-- Section 1 UTM Tagging & Campaign Setup-->
+<div class="table-wrapper"></div>
+  <table id="audit-table">
+    <thead>
+      <tr>
+        <th>Section</th><th>Category / Step</th><th>Checklist Item</th><th>Description</th><th>Applies To</th><th>Team Responsible</th><th>Comments</th>
+<th class="status-header">Status<button id="reset-all">Reset All checkboxes and Comments</button>
+</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-section="UTM Tagging & Campaign Setup"><td>UTM Tagging & Campaign Setup</td><td>UTM Parameters</td><td>–</td>
+        <td>Review all paid and owned media campaign URLs… Create a UTM naming convention guide if none.</td>
+        <td>All Clients</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="UTM Tagging & Campaign Setup"><td>UTM Tagging & Campaign Setup</td><td>URL Validation</td><td>–</td>
+        <td>Use a tool to verify UTM format/completeness. Inspect live URLs.</td>
+        <td>All Clients</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="UTM Tagging & Campaign Setup"><td>UTM Tagging & Campaign Setup</td><td>Landing Page QA</td><td>–</td>
+        <td>Perform click-through tests… ensure UTMs retained, not stripped/overwritten, no duplication.</td>
+        <td>All Clients</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+
+    <!-- Section 2 Google Analytics 4 (GA4)-->
+      <tr data-section="GA4"><td>Google Analytics 4 (GA4)</td><td>Property &amp; Stream</td><td>GA4 property installed correctly</td>
+        <td>Confirm Measurement ID present; tags firing via Tag Assistant/console.</td>
+        <td>All Clients</td><td>Data Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="GA4"><td>Google Analytics 4 (GA4)</td><td>Stream settings</td><td>Enhanced Measurement toggles</td>
+        <td>Ensure domain added; Enhanced Measurement ON unless disabled.</td>
+        <td>All Clients</td><td>Data Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="GA4"><td>Google Analytics 4 (GA4)</td><td>Data Collection</td><td>UTMs captured in reports</td>
+        <td>Check Reports > Acquisition… sessions attributed to utm_source/medium/campaign.</td>
+        <td>All Clients</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="GA4"><td>Google Analytics 4 (GA4)</td><td>Data Collection</td><td>Parameter consistency</td>
+        <td>Confirm on-site UTMs match naming – avoid case/spelling issues.</td>
+        <td>All Clients</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="GA4"><td>Google Analytics 4 (GA4)</td><td>Referrals &amp; Domains</td><td>Referral exclusion list</td>
+        <td>Add platforms (paypal.com, razorpay.com) to exclusion list.</td>
+        <td>All Clients</td><td>Data Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="GA4"><td>Google Analytics 4 (GA4)</td><td>🕒 Historical Stream Review</td><td>Legacy/duplicate stream IDs</td>
+        <td>Verify no deprecated streams; tags point to correct ID.</td>
+        <td>for Existing setups only</td><td>Data Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="GA4"><td>Google Analytics 4 (GA4)</td><td>Ecommerce</td><td>Ecommerce event setup</td>
+        <td>Verify view_item, add_to_cart, begin_checkout, purchase with correct params.</td>
+        <td>All Clients</td><td>Data Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="GA4"><td>Google Analytics 4 (GA4)</td><td>Conversions</td><td>Key events as conversions</td>
+        <td>Ensure purchase/form_submit registered as conversions; test in DebugView.</td>
+        <td>All Clients</td><td>Data Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="GA4"><td>Google Analytics 4 (GA4)</td><td>🕒 Conversion Duplication</td><td>Legacy/unneeded conversions</td>
+        <td>Remove duplicate conversion events (form_submit vs form_completed).</td>
+        <td>for Existing setups only</td><td>Data Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="GA4"><td>Google Analytics 4 (GA4)</td><td>Custom Dimensions</td><td>Custom event &amp; user params</td>
+        <td>Ensure custom definitions registered & populating in Realtime.</td>
+        <td>All Clients</td><td>Data Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="GA4"><td>Google Analytics 4 (GA4)</td><td>Integrations</td><td>Google Ads / BigQuery link</td>
+        <td>Confirm Product Links for Ads &amp; BigQuery.</td>
+        <td>All Clients</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="GA4"><td>Google Analytics 4 (GA4)</td><td>🕒 Historical Consistency</td><td>Data gaps/drop-offs</td>
+        <td>Review past 30–90 days for anomalies.</td>
+        <td>for Existing setups only</td><td>Data Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+
+    <!-- Section 3 Google Ads-->
+      <tr data-section="Google Ads"><td>Google Ads</td><td>🕒 Account Setup</td><td>Billing/currency/time zone</td>
+        <td>Ensure correct time zone & billing currency.</td>
+        <td>for Existing setups only</td><td>Data Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="Google Ads"><td>Google Ads</td><td>Auto-Tagging</td><td>Auto-tagging enabled</td>
+        <td>Confirm Auto-tagging ON for gclid.</td>
+        <td>All Clients</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="Google Ads"><td>Google Ads</td><td>GA4 Linking</td><td>Link GA4 property</td>
+        <td>Verify Ads → Linked accounts → GA4.</td>
+        <td>All Clients</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="Google Ads"><td>Google Ads</td><td>Conversion Tracking</td><td>Actions aligned</td>
+        <td>Ensure correct conversion actions & windows.</td>
+        <td>All Clients</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="Google Ads"><td>Google Ads</td><td>🕒 Conversion Conflicts</td><td>Duplicate conversions</td>
+        <td>Archive duplicate purchase actions.</td>
+        <td>for Existing setups only</td><td>Data Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="Google Ads"><td>Google Ads</td><td>🕒 Campaign Structure</td><td>Campaigns by objective</td>
+        <td>Align structure with funnel stages.</td>
+        <td>for Existing setups only</td><td>Data Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="Google Ads"><td>Google Ads</td><td>🕒 Audience Lists</td><td>Remarketing lists</td>
+        <td>Confirm audiences populating.</td>
+        <td>for Existing setups only</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="Google Ads"><td>Google Ads</td><td>🕒 Creative QA</td><td>Ad assets & extensions</td>
+        <td>Review headlines, sitelinks, snippets.</td>
+        <td>for Existing setups only</td><td>Data Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="Google Ads"><td>Google Ads</td><td>🕒 Keyword Coverage</td><td>Match types & negatives</td>
+        <td>Ensure brand terms & negative lists correct.</td>
+        <td>for Existing setups only</td><td>Data Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+
+    <!-- Section 4 Meta (Facebook) Ads-->
+      <tr data-section="Meta Ads"><td>Meta (Facebook) Ads</td><td>Pixel Installation</td><td>Pixel presence & correctness</td>
+        <td>Use Pixel Helper to verify on all key pages.</td>
+        <td>All Clients</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="Meta Ads"><td>Meta (Facebook) Ads</td><td>Event Tracking</td><td>Standard events</td>
+        <td>Validate PageView, AddToCart, Purchase in Test Events.</td>
+        <td>All Clients</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="Meta Ads"><td>Meta (Facebook) Ads</td><td>Conversions API</td><td>Server-side & dedup</td>
+        <td>Confirm server events include event ID for dedup.</td>
+        <td>All Clients</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="Meta Ads"><td>Meta (Facebook) Ads</td><td>Domain Verification</td><td>Brand Safety → Domains</td>
+        <td>Ensure domain verified in Business Manager.</td>
+        <td>All Clients</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="Meta Ads"><td>Meta (Facebook) Ads</td><td>🕒 Pixel Conflicts</td><td>Extra/inactive pixels</td>
+        <td>Remove legacy or duplicate pixel code.</td>
+        <td>for Existing setups only</td><td>Data Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="Meta Ads"><td>Meta (Facebook) Ads</td><td>🕒 Custom Audiences</td><td>Audience population</td>
+        <td>Validate key segments are populating.</td>
+        <td>for Existing setups only</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      <tr data-section="Meta Ads"><td>Meta (Facebook) Ads</td><td>Account Settings</td><td>Currency/timezone/billing</td>
+        <td>Check billing, time zone, access.</td>
+        <td>All Clients</td><td>Activation Team</td><td><input type="text" class="comment" placeholder="Add comment…"></td><td><input type="checkbox" class="status"></td></tr>
+      </div>
+      <button id="generate-report">Generate XLSX Report</button>
+      <!-- Generate XLSX Script -->
+      <script>
+        document.getElementById('generate-report').addEventListener('click', function() {
+          const rows = document.querySelectorAll('#audit-table tbody tr');
+          const aoa = [['Section','Category / Step','Checklist Item','Description','Applies To','Team Responsible','Comments','Status']];
+          rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            const section   = cells[0].innerText.trim();
+            const category  = cells[1].innerText.trim();
+            const item      = cells[2].innerText.trim();
+            const desc      = cells[3].innerText.trim();
+            const appliesTo = cells[4].innerText.trim();
+            const team      = cells[5].innerText.trim(); // New column
+            const comment   = cells[6].querySelector('input.comment').value.trim();
+            const status    = cells[7].querySelector('input').checked ? 'Pass' : 'Fail';
+            aoa.push([section, category, item, desc, appliesTo, team, comment, status]);
+          });
+          /* generate workbook */
+          const ws = XLSX.utils.aoa_to_sheet(aoa);
+          const wb = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(wb, ws, 'Audit Report');
+          XLSX.writeFile(wb, `media_audit_report_${new Date().toISOString().slice(0,10)}.xlsx`);
+        });
+      </script>
+       <!-- Scripts at the bottom, below your existing generate-report listener -->
+  <script>
+    // Existing generate-report handler…
+
+    // New: Reset all checkboxes
+    document.getElementById('reset-all').addEventListener('click', function() {
+      document.querySelectorAll('#audit-table input[type="checkbox"]').forEach(cb => cb.checked = false);
+      document.querySelectorAll('input[class="comment"]').forEach(input => input.value = '');
+    });
+  </script>
+  <script>
+document.querySelectorAll('td').forEach(function(e) {
+  if (e.innerText.trim() === 'Activation Team') {
+    e.style.backgroundColor = '#f0ad4e';
+  }
+});
+</script>
+</body>
+</html>
